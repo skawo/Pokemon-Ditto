@@ -38,11 +38,11 @@ Route22GetRivalTrainerNoByStarterScript:
 
 Route22MoveRivalRightScript:
 	ld de, Route22RivalMovementData
-	ld a, [wSavedCoordIndex]
+	ld a, [wcf0d]
 	cp $1
-	jr z, .skip_first_right
+	jr z, .asm_50ef1
 	inc de
-.skip_first_right
+.asm_50ef1
 	call MoveSprite
 	ld a, SPRITE_FACING_RIGHT
 	ldh [hSpriteFacingDirection], a
@@ -62,7 +62,7 @@ Route22DefaultScript:
 	call ArePlayerCoordsInArray
 	ret nc
 	ld a, [wCoordIndex]
-	ld [wSavedCoordIndex], a
+	ld [wcf0d], a
 	xor a
 	ldh [hJoyHeld], a
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
@@ -107,8 +107,8 @@ Route22Rival1StartBattleScript:
 	ld a, [wd730]
 	bit 0, a
 	ret nz
-	ld a, [wSavedCoordIndex]
-	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
+	ld a, [wcf0d]
+	cp $1
 	jr nz, .set_rival_facing_right
 	ld a, PLAYER_DIR_DOWN
 	ld [wPlayerMovingDirection], a
@@ -172,8 +172,8 @@ Route22Rival1AfterBattleScript:
 	ld [wNewSoundID], a
 	call PlaySound
 	farcall Music_RivalAlternateStart
-	ld a, [wSavedCoordIndex]
-	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
+	ld a, [wcf0d]
+	cp $1
 	jr nz, .exit_movement_2
 	call .RivalExit1Script
 	jr .next_script
@@ -263,8 +263,8 @@ Route22Rival2StartBattleScript:
 	ret nz
 	ld a, ROUTE22_RIVAL2
 	ldh [hSpriteIndex], a
-	ld a, [wSavedCoordIndex]
-	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
+	ld a, [wcf0d]
+	cp $1
 	jr nz, .set_player_direction_left
 	ld a, PLAYER_DIR_DOWN
 	ld [wPlayerMovingDirection], a
@@ -307,8 +307,8 @@ Route22Rival2AfterBattleScript:
 	jp z, Route22SetDefaultScript
 	ld a, ROUTE22_RIVAL2
 	ldh [hSpriteIndex], a
-	ld a, [wSavedCoordIndex]
-	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
+	ld a, [wcf0d]
+	cp $1
 	jr nz, .set_player_direction_left
 	ld a, PLAYER_DIR_DOWN
 	ld [wPlayerMovingDirection], a
@@ -331,8 +331,8 @@ Route22Rival2AfterBattleScript:
 	ld [wNewSoundID], a
 	call PlaySound
 	farcall Music_RivalAlternateStartAndTempo
-	ld a, [wSavedCoordIndex]
-	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
+	ld a, [wcf0d]
+	cp $1
 	jr nz, .exit_movement_2
 	call .RivalExit1Script
 	jr .next_script

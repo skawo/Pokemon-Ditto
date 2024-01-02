@@ -1,5 +1,5 @@
 	object_const_def
-	const_export AGATHASROOM_AGATHA
+	const AGATHASROOM_AGATHA
 
 AgathasRoom_Object:
 	db $0 ; border block

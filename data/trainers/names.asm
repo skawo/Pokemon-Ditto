@@ -1,6 +1,6 @@
 TrainerNames::
 	list_start TrainerNames
-	li "YOUNGSTER"
+	li "STUDENT"
 	li "BUG CATCHER"
 	li "LASS"
 	li "SAILOR"
@@ -27,7 +27,7 @@ TrainerNames::
 	li "RIVAL1"
 	li "PROF.OAK"
 	li "CHIEF"
-	li "SCIENTIST"
+	li "LAB MAN"
 	li "GIOVANNI"
 	li "ROCKET"
 	li "COOLTRAINER♂"

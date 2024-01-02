@@ -30,7 +30,7 @@ PokedexEntryPointers:
 	dw BlastoiseDexEntry
 	dw PinsirDexEntry
 	dw TangelaDexEntry
-	dw MissingNoDexEntry
+	dw QwilfishDexEntry
 	dw MissingNoDexEntry
 	dw GrowlitheDexEntry
 	dw OnixDexEntry
@@ -405,6 +405,13 @@ TangelaDexEntry:
 	db 3,3
 	dw 770
 	text_far _TangelaDexEntry
+	text_end
+	
+QwilfishDexEntry:
+	db "CONVENIENT@"
+	db 1,8
+	dw 86
+	text_far _QwilfishDexEntry
 	text_end
 
 GrowlitheDexEntry:

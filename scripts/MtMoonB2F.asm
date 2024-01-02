@@ -7,18 +7,18 @@ MtMoonB2F_Script:
 	ld [wMtMoonB2FCurScript], a
 	CheckEvent EVENT_BEAT_MT_MOON_EXIT_SUPER_NERD
 	ret z
-	ld hl, MtMoonB2FFossilAreaCoords
+	ld hl, CoordsData_49d37
 	call ArePlayerCoordsInArray
-	jr nc, .enable_battles
+	jr nc, .asm_49d31
 	ld hl, wd72e
 	set 4, [hl]
 	ret
-.enable_battles
+.asm_49d31
 	ld hl, wd72e
 	res 4, [hl]
 	ret
 
-MtMoonB2FFossilAreaCoords:
+CoordsData_49d37:
 	dbmapcoord 11,  5
 	dbmapcoord 12,  5
 	dbmapcoord 13,  5

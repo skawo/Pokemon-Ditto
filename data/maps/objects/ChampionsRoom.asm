@@ -1,6 +1,6 @@
 	object_const_def
-	const_export CHAMPIONSROOM_RIVAL
-	const_export CHAMPIONSROOM_OAK
+	const CHAMPIONSROOM_RIVAL
+	const CHAMPIONSROOM_OAK
 
 ChampionsRoom_Object:
 	db $3 ; border block

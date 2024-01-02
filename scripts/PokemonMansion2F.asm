@@ -1,5 +1,5 @@
 PokemonMansion2F_Script:
-	call Mansion2CheckReplaceSwitchDoorBlocks
+	call Mansion2Script_51fee
 	call EnableAutoTextBoxDrawing
 	ld hl, Mansion2TrainerHeaders
 	ld de, PokemonMansion2F_ScriptPointers
@@ -8,36 +8,36 @@ PokemonMansion2F_Script:
 	ld [wPokemonMansion2FCurScript], a
 	ret
 
-Mansion2CheckReplaceSwitchDoorBlocks:
+Mansion2Script_51fee:
 	ld hl, wCurrentMapScriptFlags
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
 	CheckEvent EVENT_MANSION_SWITCH_ON
-	jr nz, .switchTurnedOn
+	jr nz, .asm_52016
 	ld a, $e
 	lb bc, 2, 4
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $54
 	lb bc, 4, 9
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $5f
 	lb bc, 11, 3
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ret
-.switchTurnedOn
+.asm_52016
 	ld a, $5f
 	lb bc, 2, 4
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $e
 	lb bc, 4, 9
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $e
 	lb bc, 11, 3
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ret
 
-Mansion2ReplaceBlock:
+Mansion2Script_5202f:
 	ld [wNewTileBlockID], a
 	predef_jump ReplaceTileBlock
 

@@ -117,11 +117,11 @@ RocketHideoutB4FGiovanniText:
 	ld a, SCRIPT_ROCKETHIDEOUTB4F_BEAT_GIOVANNI
 	ld [wRocketHideoutB4FCurScript], a
 	ld [wCurMapScript], a
-	jr .done
+	jr .asm_209f0
 .beat_giovanni
 	ld hl, RocketHideoutB4FGiovanniHopeWeMeetAgainText
 	call PrintText
-.done
+.asm_209f0
 	jp TextScriptEnd
 
 .ImpressedYouGotHereText:
@@ -191,11 +191,11 @@ RocketHideoutB4FRocket2AfterBattleText:
 	ld hl, .Text
 	call PrintText
 	CheckAndSetEvent EVENT_ROCKET_DROPPED_LIFT_KEY
-	jr nz, .done
+	jr nz, .asm_455e9
 	ld a, HS_ROCKET_HIDEOUT_B4F_ITEM_5
 	ld [wMissableObjectIndex], a
 	predef ShowObject
-.done
+.asm_455e9
 	jp TextScriptEnd
 
 .Text:

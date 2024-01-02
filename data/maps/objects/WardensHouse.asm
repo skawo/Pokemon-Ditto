@@ -1,7 +1,7 @@
 	object_const_def
-	const_export WARDENSHOUSE_WARDEN
-	const_export WARDENSHOUSE_RARE_CANDY
-	const_export WARDENSHOUSE_BOULDER
+	const WARDENSHOUSE_WARDEN
+	const WARDENSHOUSE_RARE_CANDY
+	const WARDENSHOUSE_BOULDER
 
 WardensHouse_Object:
 	db $17 ; border block

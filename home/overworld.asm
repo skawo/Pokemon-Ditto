@@ -104,7 +104,7 @@ OverworldLoopLessDelay::
 	bit 0, a
 	jr nz, .checkForOpponent
 	lda_coord 8, 9
-	ld [wTilePlayerStandingOn], a ; checked when using Surf for forbidden tile pairs
+	ld [wTilePlayerStandingOn], a ; unused?
 	call DisplayTextID ; display either the start menu or the NPC/sign text
 	ld a, [wEnteringCableClub]
 	and a
@@ -910,9 +910,9 @@ LoadTileBlockMap::
 	add hl, bc
 	ld c, MAP_BORDER
 	add hl, bc ; this puts us past the (west) border
-	ld a, [wCurMapDataPtr] ; tile map pointer
+	ld a, [wMapDataPtr] ; tile map pointer
 	ld e, a
-	ld a, [wCurMapDataPtr + 1]
+	ld a, [wMapDataPtr + 1]
 	ld d, a ; de = tile map pointer
 	ld a, [wCurMapHeight]
 	ld b, a
@@ -1869,7 +1869,7 @@ JoypadOverworld::
 ; if done simulating button presses
 .doneSimulating
 	xor a
-	ld [wUnusedCD3A], a
+	ld [wWastedByteCD3A], a
 	ld [wSimulatedJoypadStatesIndex], a
 	ld [wSimulatedJoypadStatesEnd], a
 	ld [wJoyIgnore], a
@@ -1966,7 +1966,7 @@ RunMapScript::
 	call RunNPCMovementScript
 	ld a, [wCurMap] ; current map number
 	call SwitchToMapRomBank ; change to the ROM bank the map's data is in
-	ld hl, wCurMapScriptPtr
+	ld hl, wMapScriptPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
@@ -2035,8 +2035,9 @@ LoadMapHeader::
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = base of map header
-	ld de, wCurMapHeader
-	ld c, wCurMapHeaderEnd - wCurMapHeader
+; copy the first 10 bytes (the fixed area) of the map data to D367-D370
+	ld de, wCurMapTileset
+	ld c, $0a
 .copyFixedHeaderLoop
 	ld a, [hli]
 	ld [de], a
@@ -2050,25 +2051,25 @@ LoadMapHeader::
 	ld [wWestConnectedMap], a
 	ld [wEastConnectedMap], a
 ; copy connection data (if any) to WRAM
-	ld a, [wCurMapConnections]
+	ld a, [wMapConnections]
 	ld b, a
 .checkNorth
-	bit NORTH_F, b
+	bit 3, b
 	jr z, .checkSouth
 	ld de, wNorthConnectionHeader
 	call CopyMapConnectionHeader
 .checkSouth
-	bit SOUTH_F, b
+	bit 2, b
 	jr z, .checkWest
 	ld de, wSouthConnectionHeader
 	call CopyMapConnectionHeader
 .checkWest
-	bit WEST_F, b
+	bit 1, b
 	jr z, .checkEast
 	ld de, wWestConnectionHeader
 	call CopyMapConnectionHeader
 .checkEast
-	bit EAST_F, b
+	bit 0, b
 	jr z, .getObjectDataPointer
 	ld de, wEastConnectionHeader
 	call CopyMapConnectionHeader

@@ -36,6 +36,15 @@ _Museum2FHikerText::
 _Museum2FSpaceShuttleSignText::
 	text "SPACE SHUTTLE"
 	line "COLUMBIA"
+	
+	para "Donated to this"
+	line "museum after the"
+	cont "Paldean Space"
+	cont "Agency discovered" 
+	cont "a convenient,"
+	cont "Chorizo-based"
+	cont "method of getting" 
+	cont "into outer space."
 	done
 
 _Museum2FMoonStoneSignText::

@@ -26,9 +26,9 @@ _Route3Youngster1AfterBattleText::
 	done
 
 _Route3Youngster2BattleText::
-	text "Hi! I like shorts!"
-	line "They're comfy and"
-	cont "easy to wear!"
+	text "I love sandwiches!"
+	line "They're tasty and"
+	cont "easy to make!"
 	done
 
 _Route3Youngster2EndBattleText::

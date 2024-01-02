@@ -18,6 +18,10 @@ UncompressMonSprite::
 ; $99 ≤ index:             bank $D ("Pics 5")
 	ld a, [wcf91]
 	ld b, a
+	cp QWILFISH
+	ld a, BANK(QwilfishPicFront)
+	jr z, .GotBank
+	ld a, b
 	cp MEW
 	ld a, BANK(MewPicFront)
 	jr z, .GotBank

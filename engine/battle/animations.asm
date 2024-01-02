@@ -976,7 +976,7 @@ AnimationFlashScreenLong:
 	push hl
 .innerLoop
 	ld a, [hli]
-	cp 1
+	cp $01 ; is it the end of the palettes?
 	jr z, .endOfPalettes
 	ldh [rBGP], a
 	call FlashScreenLongDelay
@@ -992,35 +992,35 @@ AnimationFlashScreenLong:
 
 ; BG palettes
 FlashScreenLongMonochrome:
-	dc 3, 3, 2, 1
-	dc 3, 3, 3, 2
-	dc 3, 3, 3, 3
-	dc 3, 3, 3, 2
-	dc 3, 3, 2, 1
-	dc 3, 2, 1, 0
-	dc 2, 1, 0, 0
-	dc 1, 0, 0, 0
-	dc 0, 0, 0, 0
-	dc 1, 0, 0, 0
-	dc 2, 1, 0, 0
-	dc 3, 2, 1, 0
-	db 1 ; end
+	db %11111001 ; 3, 3, 2, 1
+	db %11111110 ; 3, 3, 3, 2
+	db %11111111 ; 3, 3, 3, 3
+	db %11111110 ; 3, 3, 3, 2
+	db %11111001 ; 3, 3, 2, 1
+	db %11100100 ; 3, 2, 1, 0
+	db %10010000 ; 2, 1, 0, 0
+	db %01000000 ; 1, 0, 0, 0
+	db %00000000 ; 0, 0, 0, 0
+	db %01000000 ; 1, 0, 0, 0
+	db %10010000 ; 2, 1, 0, 0
+	db %11100100 ; 3, 2, 1, 0
+	db $01 ; terminator
 
 ; BG palettes
 FlashScreenLongSGB:
-	dc 3, 3, 2, 0
-	dc 3, 3, 3, 0
-	dc 3, 3, 3, 3
-	dc 3, 3, 3, 0
-	dc 3, 3, 2, 0
-	dc 3, 2, 1, 0
-	dc 2, 1, 0, 0
-	dc 1, 0, 0, 0
-	dc 0, 0, 0, 0
-	dc 1, 0, 0, 0
-	dc 2, 1, 0, 0
-	dc 3, 2, 1, 0
-	db 1 ; end
+	db %11111000 ; 3, 3, 2, 0
+	db %11111100 ; 3, 3, 3, 0
+	db %11111111 ; 3, 3, 3, 3
+	db %11111100 ; 3, 3, 3, 0
+	db %11111000 ; 3, 3, 2, 0
+	db %11100100 ; 3, 2, 1, 0
+	db %10010000 ; 2, 1, 0, 0
+	db %01000000 ; 1, 0, 0, 0
+	db %00000000 ; 0, 0, 0, 0
+	db %01000000 ; 1, 0, 0, 0
+	db %10010000 ; 2, 1, 0, 0
+	db %11100100 ; 3, 2, 1, 0
+	db $01 ; terminator
 
 ; causes a delay of 2 frames for the first cycle
 ; causes a delay of 1 frame for the second and third cycles

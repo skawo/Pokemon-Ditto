@@ -1460,9 +1460,9 @@ PlayBattleAnimation2:
 	ld [wAnimationID], a
 	ldh a, [hWhoseTurn]
 	and a
-	ld a, ANIMATIONTYPE_SHAKE_SCREEN_HORIZONTALLY_SLOW_2
+	ld a, $6
 	jr z, .storeAnimationType
-	ld a, ANIMATIONTYPE_SHAKE_SCREEN_HORIZONTALLY_SLOW
+	ld a, $3
 .storeAnimationType
 	ld [wAnimationType], a
 	jp PlayBattleAnimationGotID

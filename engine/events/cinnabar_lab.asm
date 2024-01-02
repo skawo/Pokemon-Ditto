@@ -52,40 +52,40 @@ GiveFossilToCinnabarLab::
 	ld a, b
 	ld [wFossilMon], a
 	call LoadFossilItemAndMonName
-	ld hl, .ScientistSeesFossilText
+	ld hl, LabFossil_610ae
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a
 	jr nz, .cancelledGivingFossil
-	ld hl, .ScientistTakesFossilText
+	ld hl, LabFossil_610b3
 	call PrintText
 	ld a, [wFossilItem]
 	ldh [hItemToRemoveID], a
 	farcall RemoveItemByID
-	ld hl, .GoForAWalkText
+	ld hl, LabFossil_610b8
 	call PrintText
 	SetEvents EVENT_GAVE_FOSSIL_TO_LAB, EVENT_LAB_STILL_REVIVING_FOSSIL
 	ret
 .cancelledGivingFossil
-	ld hl, .ComeAgainText
+	ld hl, LabFossil_610bd
 	call PrintText
 	ret
 
-.ScientistSeesFossilText:
-	text_far _CinnabarLabFossilRoomScientist1SeesFossilText
+LabFossil_610ae:
+	text_far _Lab4Text_610ae
 	text_end
 
-.ScientistTakesFossilText:
-	text_far _CinnabarLabFossilRoomScientist1TakesFossilText
+LabFossil_610b3:
+	text_far _Lab4Text_610b3
 	text_end
 
-.GoForAWalkText:
-	text_far _CinnabarLabFossilRoomScientist1GoForAWalkText2
+LabFossil_610b8:
+	text_far _Lab4Text_610b8
 	text_end
 
-.ComeAgainText:
-	text_far _CinnabarLabFossilRoomScientist1ComeAgainText
+LabFossil_610bd:
+	text_far _Lab4Text_610bd
 	text_end
 
 PrintFossilsInBag:

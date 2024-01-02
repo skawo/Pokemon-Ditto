@@ -1,6 +1,6 @@
 	object_const_def
-	const_export PEWTERSPEECHHOUSE_GAMBLER
-	const_export PEWTERSPEECHHOUSE_YOUNGSTER
+	const PEWTERSPEECHHOUSE_GAMBLER
+	const PEWTERSPEECHHOUSE_YOUNGSTER
 
 PewterSpeechHouse_Object:
 	db $a ; border block

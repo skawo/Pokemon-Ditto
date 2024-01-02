@@ -1,4 +1,268 @@
+FixPP:
+	ld a, 0
+	ld [wWhichPokemon], a
+	ld [wMonDataLocation], a
+	ld [wUnusedD153], a
+	
+	ld hl, wPartyMon1PP
+	push hl
+
+.loop
+	ld a, 0
+	ld [wUnusedD366], a
+	
+		.loopinner
+			ld a, [wUnusedD366]
+			ld [wCurrentMenuItem], a
+
+			callfar GetMaxPP
+		
+			pop hl
+		
+			ld a, [wMaxPP]
+			ld [hli],  a
+
+			ld a, [wUnusedD366]
+			inc a
+			ld [wUnusedD366], a
+			
+			push hl
+			
+			cp 4
+			jr nz, .loopinner
+			
+		.endinner
+		
+	pop hl
+	dec hl
+	dec hl
+	dec hl
+	dec hl
+
+	ld bc, 44
+	add hl, bc
+	push hl
+	
+	ld a, [wUnusedD153]
+	inc a	
+	ld [wWhichPokemon], a
+	ld [wUnusedD153], a
+	
+	cp 6
+	jr nz, .loop
+	
+	pop hl
+	ret
+
+
+CopyOpponentParty:
+; If SELECT held, don't copy
+	ldh a, [hJoyHeld]
+	ld b, SELECT
+	and a, b
+	jp nz, .dontcopy
+	
+.docopy
+; Copy main data
+	ld hl, wEnemyPartyCount
+	ld bc, wEnemyMonOT - wEnemyPartyCount
+	ld de, wPartyDataStart
+	call CopyData
+	
+	ld a, 6
+	ld b, a
+	ld hl, wPartyMon1OTID
+	
+; Copy OT ID
+.loopCopyOT
+	ld a, [wPlayerID]
+	ld [hl], a
+	ld a, [wPlayerID + 1]
+	inc hl
+	ld [hl], a	
+	dec hl
+	
+	ld de, wPartyMon2OTID - wPartyMon1OTID
+	add hl, de
+	
+	dec b
+	ld a, b
+	cp 0
+	jr nz, .loopCopyOT
+	
+; Copy Pokemon names	
+	ld a, 6
+	ld [wUnusedD366], a
+	ld bc, wPartySpecies
+	ld de, wPartyMon1Nick	
+
+.loopFixNames
+	push bc
+	push de	
+	
+	ld a, [bc]
+	ld [wd11e], a
+	call GetMonName
+	
+	pop de
+	pop bc
+	push bc
+	push de	
+	
+	ld bc, 10
+	ld hl, wcd6d
+	call CopyData
+	
+	pop de
+	pop bc
+	
+	ld hl, 0
+	add hl, de
+	ld de, wPartyMon2Nick - wPartyMon1Nick
+	add hl, de
+	ld d, h
+	ld e, l
+	
+	ld hl, 0
+	add hl, bc	
+	ld bc, wPartyMon2Species - wPartySpecies
+	add hl, bc
+	ld b, h
+	ld c, l	
+	
+	ld a, [wUnusedD366]
+	dec a
+	ld [wUnusedD366], a
+	cp 0
+	jr nz, .loopFixNames
+	
+; Copy Trainer Name	
+
+	ld a, 6
+	ld [wUnusedD366], a
+	ld de, wPartyMon1OT
+	ld bc, wPartyMon2OT - wPartyMon1OT 
+	
+.loopCopyOTName
+	
+	push de 
+	push bc 
+	
+	ld hl, wPlayerName
+	ld bc, wPartyMon2OT - wPartyMon1OT
+	call CopyData	
+	
+	pop bc
+	pop de
+	
+	ld hl, 0
+	add hl, bc	
+	add hl, de
+	ld d, h
+	ld e, l
+
+	ld a, [wUnusedD366]
+	dec a
+	ld [wUnusedD366], a
+	cp 0
+	jr nz, .loopCopyOTName
+
+	call FixPP
+	
+.dontcopy
+	ret
+
+CopyWildMon:
+; If SELECT held, don't copy
+	ldh a, [hJoyHeld]
+	ld b, SELECT
+	and a, b
+	jp nz, .dontcopywildmon
+
+
+.docopywildmon
+	ld a, 1
+	ld hl, wPartyCount
+	ld [hl], a
+	
+	ld a, 255
+	ld hl, wPartySpecies + 1
+	ld [hl], a
+	
+	ld a, [wEnemyMonSpecies]
+	ld hl, wPartySpecies
+	ld [hl], a
+	
+	ld a, [wEnemyMonHP]
+	ld [wPartyMon1HP], a
+	ld a, [wEnemyMonHP + 1]
+	ld [wPartyMon1HP + 1], a	
+	
+	ld a, [wEnemyMonBoxLevel]
+	ld hl, wPartyMon1BoxLevel
+	ld [hl], a		
+	
+	ld hl, wEnemyMonStatus
+	ld bc, wEnemyMonDVs - wEnemyMonStatus
+	ld de, wPartyMon1Status
+	call CopyData
+	
+	ld hl, wEnemyMonDVs
+	ld bc, wEnemyMonLevel - wEnemyMonDVs
+	ld de, wPartyMon1DVs
+	call CopyData	
+	
+	ld a, [wEnemyMonLevel]
+	ld hl, wPartyMon1Level
+	ld [hl], a		
+	
+	ld hl, wEnemyMonMaxHP
+	ld bc, wEnemyMonPP - wEnemyMonMaxHP
+	ld de, wPartyMon1MaxHP
+	call CopyData
+	
+	ld hl, wEnemyMonPP
+	ld bc, wEnemyMonBaseStats - wEnemyMonPP
+	ld de, wPartyMon1PP
+	call CopyData
+
+	ld a, [wEnemyMonSpecies]
+	ld [wd11e], a
+	call GetMonName
+	ld bc, 10
+	ld hl, wcd6d
+	ld de, wPartyMon1Nick
+	call CopyData	
+	
+	ld hl, wPlayerName
+	ld bc, wPartyMon2OT - wPartyMon1OT
+	ld de, wPartyMon1OT
+	call CopyData	
+	
+	ld a, 0
+	ld [wMonDataLocation], a
+	ld [wWhichPokemon], a
+	call LoadMonData
+	
+	ld a, [wPartyMon1Level]
+	ld d, a
+	callfar CalcExperience
+	
+	ld hl, wPartyMon1Exp
+	ldh a, [hExperience]
+	ld [hli], a
+	ldh a, [hExperience + 1]
+	ld [hli], a
+	ldh a, [hExperience + 2]
+	ld [hl], a		
+	
+	call FixPP
+	
+.dontcopywildmon
+	ret
+
 PrintBeginningBattleText:
+	call CopyWildMon
 	ld a, [wIsInBattle]
 	dec a
 	jr nz, .trainerBattle
@@ -18,10 +282,16 @@ PrintBeginningBattleText:
 .notFishing
 	jr .wildBattle
 .trainerBattle
+	call CopyOpponentParty
 	call .playSFX
 	ld c, 20
 	call DelayFrames
+	
 	ld hl, TrainerWantsToFightText
+	ld a, [wTrainerClass]
+	cp 1
+	jr nz, .wildBattle
+	ld hl, StudentWantsToFightText
 .wildBattle
 	push hl
 	callfar DrawAllPokeballs
@@ -85,6 +355,10 @@ EnemyAppearedText:
 TrainerWantsToFightText:
 	text_far _TrainerWantsToFightText
 	text_end
+	
+StudentWantsToFightText:
+	text_far _StudentWantsToFightText
+	text_end	
 
 UnveiledGhostText:
 	text_far _UnveiledGhostText

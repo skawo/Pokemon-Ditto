@@ -36,7 +36,7 @@ CryData::
 	mon_cry SFX_CRY_13, $00, $80 ; Blastoise
 	mon_cry SFX_CRY_14, $00, $80 ; Pinsir
 	mon_cry SFX_CRY_12, $00, $80 ; Tangela
-	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
+	mon_cry SFX_CRY_00, $50, $20 ; Qwilfish.
 	mon_cry SFX_CRY_00, $00, $00 ; MissingNo.
 	mon_cry SFX_CRY_1F, $20, $40 ; Growlithe
 	mon_cry SFX_CRY_17, $FF, $C0 ; Onix
@@ -196,4 +196,5 @@ CryData::
 	mon_cry SFX_CRY_21, $55, $01 ; Bellsprout
 	mon_cry SFX_CRY_25, $44, $20 ; Weepinbell
 	mon_cry SFX_CRY_25, $66, $CC ; Victreebel
+
 	assert_table_length NUM_POKEMON_INDEXES

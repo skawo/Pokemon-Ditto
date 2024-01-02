@@ -576,9 +576,13 @@ _IndigoPlateauHQText::
 
 _RedBedroomSNESText::
 	text "<PLAYER> is"
-	line "playing the SNES!"
-	cont "...Okay!"
-	cont "It's time to go!"
+	line "playing on the"
+	cont "Nintendo Switch!"
+	cont "It's the newest"
+	cont "#MON game!"
+	
+	para "''This thing's"
+	line "HORRIBLE!''"
 	done
 
 _Route15UpstairsBinocularsText::
@@ -927,6 +931,10 @@ _TrainerSentOutText::
 	text_ram wEnemyMonNick
 	text "!"
 	done
+	
+_AAAHNIXGO::
+	text "AAAAAHNIX, GO!!!"
+	done
 
 _NoWillText::
 	text "There's no will"
@@ -1252,6 +1260,10 @@ _EnemyAppearedText::
 	text_ram wEnemyMonNick
 	text_start
 	line "appeared!"
+	prompt
+	
+_StudentWantsToFightText::
+	text "Oh, a student."
 	prompt
 
 _TrainerWantsToFightText::

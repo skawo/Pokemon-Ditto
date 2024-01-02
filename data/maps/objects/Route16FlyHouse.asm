@@ -1,6 +1,6 @@
 	object_const_def
-	const_export ROUTE16FLYHOUSE_BRUNETTE_GIRL
-	const_export ROUTE16FLYHOUSE_FEAROW
+	const ROUTE16FLYHOUSE_BRUNETTE_GIRL
+	const ROUTE16FLYHOUSE_FEAROW
 
 Route16FlyHouse_Object:
 	db $a ; border block

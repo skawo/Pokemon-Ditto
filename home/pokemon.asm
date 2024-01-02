@@ -398,6 +398,8 @@ GetMonHeader::
 	jr z, .specialID
 	cp MEW
 	jr z, .mew
+	cp QWILFISH
+	jr z, .qwilfish
 	predef IndexToPokedex   ; convert pokemon ID in [wd11e] to pokedex number
 	ld a, [wd11e]
 	dec a
@@ -421,6 +423,13 @@ GetMonHeader::
 	ld de, wMonHeader
 	ld bc, BASE_DATA_SIZE
 	ld a, BANK(MewBaseStats)
+	call FarCopyData
+	jp .done
+.qwilfish
+	ld hl, QwilfishBaseStats
+	ld de, wMonHeader
+	ld bc, BASE_DATA_SIZE
+	ld a, BANK(QwilfishBaseStats)
 	call FarCopyData
 .done
 	ld a, [wd0b5]

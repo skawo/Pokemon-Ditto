@@ -13,7 +13,7 @@ DisplayTextID::
 .skipSwitchToMapBank
 	ld a, 30 ; half a second
 	ldh [hFrameCounter], a ; used as joypad poll timer
-	ld hl, wCurMapTextPtr
+	ld hl, wMapTextPtr
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a ; hl = map text pointer

@@ -119,12 +119,12 @@ _ChampionsRoomOakDisappointedWithRivalText::
 	line "understand why"
 	cont "you lost?"
 
-	para "You have forgotten"
-	line "to treat your"
-	cont "#MON with"
-	cont "trust and love!"
+	para "You have not"
+	line "used a QWILFISH!"
+	cont "You lacked the"
+	cont "CONVENIENCE!"
 
-	para "Without them, you"
+	para "Without it, you"
 	line "will never become"
 	cont "a champ again!"
 	done
@@ -138,8 +138,8 @@ _ChampionsRoomOakComeWithMeText::
 	cont "own doing!"
 
 	para "The bond you share"
-	line "with your #MON"
-	cont "is marvelous!"
+	line "with opponents'"
+	cont "#MON is great!"
 
 	para "<PLAYER>!"
 	line "Come with me!"

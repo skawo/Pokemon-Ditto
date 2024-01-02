@@ -107,12 +107,12 @@ CinnabarGymOpenGateScript:
 	call CinnabarGymFlagAction
 	ld a, c
 	and a
-	jr nz, .no_sound
+	jr nz, .asm_7581b
 	call WaitForSoundToFinish
 	ld a, SFX_GO_INSIDE
 	call PlaySound
 	call WaitForSoundToFinish
-.no_sound
+.asm_7581b
 	ld a, [wTrainerHeaderFlagBit]
 	ldh [hGymGateIndex], a
 	AdjustEventBit EVENT_BEAT_CINNABAR_GYM_TRAINER_0, 2

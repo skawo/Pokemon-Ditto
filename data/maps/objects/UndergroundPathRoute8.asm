@@ -1,5 +1,5 @@
 	object_const_def
-	const_export UNDERGROUNDPATHROUTE8_GIRL
+	const UNDERGROUNDPATHROUTE8_GIRL
 
 UndergroundPathRoute8_Object:
 	db $a ; border block

@@ -36,7 +36,7 @@ ShowPokedexMenu:
 	ld [wCurrentMenuItem], a
 	ld [wLastMenuItem], a
 	ldh [hJoy7], a
-	ld [wUnusedCD3A], a
+	ld [wWastedByteCD3A], a
 	ld [wOverrideSimulatedJoypadStatesMask], a
 	pop af
 	ld [wListScrollOffset], a
@@ -379,6 +379,14 @@ PokedexMenuItemsText:
 ; [wd11e] = pokedex number
 ; hl = address of bit field
 IsPokemonBitSet:
+	ld a, [wd11e]
+	
+	cp 152
+	jp nz, .notqilfish
+	inc a
+	ret
+	
+.notqilfish
 	ld a, [wd11e]
 	dec a
 	ld c, a

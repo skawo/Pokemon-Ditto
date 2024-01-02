@@ -1,5 +1,5 @@
 	object_const_def
-	const_export BRUNOSROOM_BRUNO
+	const BRUNOSROOM_BRUNO
 
 BrunosRoom_Object:
 	db $3 ; border block

@@ -1,6 +1,6 @@
 	object_const_def
-	const_export VIRIDIANSCHOOLHOUSE_BRUNETTE_GIRL
-	const_export VIRIDIANSCHOOLHOUSE_COOLTRAINER_F
+	const VIRIDIANSCHOOLHOUSE_BRUNETTE_GIRL
+	const VIRIDIANSCHOOLHOUSE_COOLTRAINER_F
 
 ViridianSchoolHouse_Object:
 	db $a ; border block

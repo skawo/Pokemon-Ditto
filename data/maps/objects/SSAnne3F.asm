@@ -1,5 +1,5 @@
 	object_const_def
-	const_export SSANNE3F_SAILOR
+	const SSANNE3F_SAILOR
 
 SSAnne3F_Object:
 	db $c ; border block

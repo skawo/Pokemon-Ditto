@@ -3,26 +3,26 @@ CeladonMartElevator_Script:
 	bit 5, [hl]
 	res 5, [hl]
 	push hl
-	call nz, CeladonMartElevatorStoreWarpEntriesScript
+	call nz, CeladonMartElevatorScript_4861c
 	pop hl
 	bit 7, [hl]
 	res 7, [hl]
-	call nz, CeladonMartElevatorShakeScript
+	call nz, CeladonMartElevatorScript_48654
 	xor a
 	ld [wAutoTextBoxDrawingControl], a
 	inc a
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ret
 
-CeladonMartElevatorStoreWarpEntriesScript:
+CeladonMartElevatorScript_4861c:
 	ld hl, wWarpEntries
 	ld a, [wWarpedFromWhichWarp]
 	ld b, a
 	ld a, [wWarpedFromWhichMap]
 	ld c, a
-	call .StoreWarpEntry
-	; fallthrough
-.StoreWarpEntry:
+	call CeladonMartElevatorScript_4862a
+
+CeladonMartElevatorScript_4862a:
 	inc hl
 	inc hl
 	ld a, b
@@ -31,12 +31,12 @@ CeladonMartElevatorStoreWarpEntriesScript:
 	ld [hli], a
 	ret
 
-CeladonMartElevatorCopyWarpMapsScript:
+CeladonMartElevatorScript_48631:
 	ld hl, CeladonMartElevatorFloors
 	call LoadItemList
 	ld hl, CeladonMartElevatorWarpMaps
 	ld de, wElevatorWarpMaps
-	ld bc, CeladonMartElevatorWarpMaps.End - CeladonMartElevatorWarpMaps
+	ld bc, CeladonMartElevatorWarpMapsEnd - CeladonMartElevatorWarpMaps
 	jp CopyData
 
 CeladonMartElevatorFloors:
@@ -56,9 +56,9 @@ CeladonMartElevatorWarpMaps:
 	db 2, CELADON_MART_3F
 	db 2, CELADON_MART_4F
 	db 2, CELADON_MART_5F
-.End:
+CeladonMartElevatorWarpMapsEnd:
 
-CeladonMartElevatorShakeScript:
+CeladonMartElevatorScript_48654:
 	farjp ShakeElevator
 
 CeladonMartElevator_TextPointers:
@@ -67,7 +67,7 @@ CeladonMartElevator_TextPointers:
 
 CeladonMartElevatorText:
 	text_asm
-	call CeladonMartElevatorCopyWarpMapsScript
+	call CeladonMartElevatorScript_48631
 	ld hl, CeladonMartElevatorWarpMaps
 	predef DisplayElevatorFloorMenu
 	jp TextScriptEnd

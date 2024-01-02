@@ -1,5 +1,5 @@
 PokemonMansion3F_Script:
-	call Mansion3CheckReplaceSwitchDoorBlocks
+	call Mansion3Script_52204
 	call EnableAutoTextBoxDrawing
 	ld hl, Mansion3TrainerHeaders
 	ld de, PokemonMansion3F_ScriptPointers
@@ -8,27 +8,27 @@ PokemonMansion3F_Script:
 	ld [wPokemonMansion3FCurScript], a
 	ret
 
-Mansion3CheckReplaceSwitchDoorBlocks:
+Mansion3Script_52204:
 	ld hl, wCurrentMapScriptFlags
 	bit 5, [hl]
 	res 5, [hl]
 	ret z
 	CheckEvent EVENT_MANSION_SWITCH_ON
-	jr nz, .switchTurnedOn
+	jr nz, .asm_52224
 	ld a, $e
 	lb bc, 2, 7
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $5f
 	lb bc, 5, 7
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ret
-.switchTurnedOn
+.asm_52224
 	ld a, $5f
 	lb bc, 2, 7
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ld a, $e
 	lb bc, 5, 7
-	call Mansion2ReplaceBlock
+	call Mansion2Script_5202f
 	ret
 
 PokemonMansion3F_ScriptPointers:
@@ -38,26 +38,26 @@ PokemonMansion3F_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION3F_END_BATTLE
 
 PokemonMansion3FDefaultScript:
-	ld hl, .holeCoords
-	call .isPlayerFallingDownHole
+	ld hl, CoordsData_52254
+	call Mansion3Script_5225b
 	ld a, [wWhichDungeonWarp]
 	and a
 	jp z, CheckFightingMapTrainers
 	cp $3
 	ld a, POKEMON_MANSION_1F
-	jr nz, .fellDownHoleTo1F
+	jr nz, .asm_52250
 	ld a, POKEMON_MANSION_2F
-.fellDownHoleTo1F
+.asm_52250
 	ld [wDungeonWarpDestinationMap], a
 	ret
 
-.holeCoords:
+CoordsData_52254:
 	dbmapcoord 16, 14
 	dbmapcoord 17, 14
 	dbmapcoord 19, 14
 	db -1 ; end
 
-.isPlayerFallingDownHole:
+Mansion3Script_5225b:
 	xor a
 	ld [wWhichDungeonWarp], a
 	ld a, [wd72d]

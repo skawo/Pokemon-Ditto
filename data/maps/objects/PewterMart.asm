@@ -1,7 +1,7 @@
 	object_const_def
-	const_export PEWTERMART_CLERK
-	const_export PEWTERMART_YOUNGSTER
-	const_export PEWTERMART_SUPER_NERD
+	const PEWTERMART_CLERK
+	const PEWTERMART_YOUNGSTER
+	const PEWTERMART_SUPER_NERD
 
 PewterMart_Object:
 	db $0 ; border block

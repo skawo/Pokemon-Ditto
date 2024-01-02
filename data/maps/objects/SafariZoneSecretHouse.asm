@@ -1,5 +1,5 @@
 	object_const_def
-	const_export SAFARIZONESECRETHOUSE_FISHING_GURU
+	const SAFARIZONESECRETHOUSE_FISHING_GURU
 
 SafariZoneSecretHouse_Object:
 	db $17 ; border block

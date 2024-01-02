@@ -4,7 +4,7 @@ SeafoamIslandsB4F_Script:
 	ld hl, SeafoamIslandsB4F_ScriptPointers
 	jp CallFunctionInTable
 
-SeafoamIslandsB4FResetScript:
+SeafoamIslands5Script_467a5:
 	xor a
 	ld [wSeafoamIslandsB4FCurScript], a
 	ld [wJoyIgnore], a
@@ -22,7 +22,7 @@ SeafoamIslandsB4F_ScriptPointers:
 SeafoamIslandsB4FObjectMoving3Script:
 	ld a, [wIsInBattle]
 	cp $ff
-	jr z, SeafoamIslandsB4FResetScript
+	jr z, SeafoamIslands5Script_467a5
 	call EndTrainerBattle
 	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
 	ld [wSeafoamIslandsB4FCurScript], a
@@ -36,14 +36,14 @@ SeafoamIslandsB4FDefaultScript:
 	ret nc
 	ld a, [wCoordIndex]
 	cp $3
-	jr nc, .only1UpInputNeeded
+	jr nc, .asm_467e6
 	ld a, NPC_MOVEMENT_UP
 	ld [wSimulatedJoypadStatesEnd + 1], a
 	ld a, 2
-	jr .forcePlayerUpFromSurfExit
-.only1UpInputNeeded
+	jr .asm_467e8
+.asm_467e6
 	ld a, 1
-.forcePlayerUpFromSurfExit
+.asm_467e8
 	ld [wSimulatedJoypadStatesIndex], a
 	ld a, D_UP
 	ld [wSimulatedJoypadStatesEnd], a
@@ -74,26 +74,26 @@ SeafoamIslandsB4FObjectMoving1Script:
 SeafoamIslandsB4FMoveObjectScript:
 	CheckBothEventsSet EVENT_SEAFOAM4_BOULDER1_DOWN_HOLE, EVENT_SEAFOAM4_BOULDER2_DOWN_HOLE
 	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
-	jr z, .playerNotInStrongCurrent
+	jr z, .asm_46849
 	ld hl, .Coords
 	call ArePlayerCoordsInArray
 	ld a, SCRIPT_SEAFOAMISLANDSB4F_DEFAULT
-	jr nc, .playerNotInStrongCurrent
+	jr nc, .asm_46849
 	ld a, [wCoordIndex]
 	cp $1
-	jr nz, .nearRightBoulder
-	ld de, .RLEList_StrongCurrentNearLeftBoulder
-	jr .forceSurfMovement
-.nearRightBoulder
-	ld de, .RLEList_StrongCurrentNearRightBoulder
-.forceSurfMovement
+	jr nz, .asm_46837
+	ld de, RLEMovementData_46859
+	jr .asm_4683a
+.asm_46837
+	ld de, RLEMovementData_46852
+.asm_4683a
 	ld hl, wSimulatedJoypadStatesEnd
 	call DecodeRLEList
 	dec a
 	ld [wSimulatedJoypadStatesIndex], a
 	call StartSimulatingJoypadStates
 	ld a, SCRIPT_SEAFOAMISLANDSB4F_OBJECT_MOVING2
-.playerNotInStrongCurrent
+.asm_46849
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
@@ -102,13 +102,13 @@ SeafoamIslandsB4FMoveObjectScript:
 	dbmapcoord  5, 14
 	db -1 ; end
 
-.RLEList_StrongCurrentNearRightBoulder:
+RLEMovementData_46852:
 	db D_UP, 3
 	db D_RIGHT, 2
 	db D_UP, 1
 	db -1 ; end
 
-.RLEList_StrongCurrentNearLeftBoulder:
+RLEMovementData_46859:
 	db D_UP, 3
 	db D_RIGHT, 3
 	db D_UP, 1
@@ -118,7 +118,7 @@ SeafoamIslandsB4FObjectMoving2Script:
 	ld a, [wSimulatedJoypadStatesIndex]
 	ld b, a
 	cp $1
-	call z, .doneForcedSurfMovement
+	call z, SeaFoamIslands5Script_46872
 	ld a, b
 	and a
 	ret nz
@@ -126,7 +126,7 @@ SeafoamIslandsB4FObjectMoving2Script:
 	ld [wSeafoamIslandsB4FCurScript], a
 	ret
 
-.doneForcedSurfMovement:
+SeaFoamIslands5Script_46872:
 	xor a
 	ld [wWalkBikeSurfState], a
 	ld [wWalkBikeSurfStateCopy], a

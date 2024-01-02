@@ -1,7 +1,7 @@
 	object_const_def
-	const_export CERULEANCAVEB1F_MEWTWO
-	const_export CERULEANCAVEB1F_ULTRA_BALL
-	const_export CERULEANCAVEB1F_MAX_REVIVE
+	const CERULEANCAVE_B1F_MEWTWO
+	const CERULEANCAVE_B1F_ULTRA_BALL
+	const CERULEANCAVE_B1F_MAX_REVIVE
 
 CeruleanCaveB1F_Object:
 	db $7d ; border block

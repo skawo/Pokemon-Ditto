@@ -14,9 +14,9 @@ ViridianMartCheckParcelDeliveredScript:
 	ld hl, ViridianMart_TextPointers2
 .done
 	ld a, l
-	ld [wCurMapTextPtr], a
+	ld [wMapTextPtr], a
 	ld a, h
-	ld [wCurMapTextPtr+1], a
+	ld [wMapTextPtr+1], a
 	ret
 
 ViridianMart_ScriptPointers:

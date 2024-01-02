@@ -7,7 +7,7 @@ Route16_Script:
 	ld [wRoute16CurScript], a
 	ret
 
-Route16ResetScripts:
+Route16Script_59946:
 	xor a ; SCRIPT_ROUTE16_DEFAULT
 	ld [wJoyIgnore], a
 	ld [wRoute16CurScript], a
@@ -19,7 +19,7 @@ Route16_ScriptPointers:
 	dw_const Route16DefaultScript,                  SCRIPT_ROUTE16_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ROUTE16_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_ROUTE16_END_BATTLE
-	dw_const Route16SnorlaxPostBattleScript,        SCRIPT_ROUTE16_SNORLAX_POST_BATTLE
+	dw_const Route16SnorlaxBattleScript,            SCRIPT_ROUTE16_SNORLAX_BATTLE
 
 Route16DefaultScript:
 	CheckEventHL EVENT_BEAT_ROUTE16_SNORLAX
@@ -38,15 +38,15 @@ Route16DefaultScript:
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	call UpdateSprites
-	ld a, SCRIPT_ROUTE16_SNORLAX_POST_BATTLE
+	ld a, SCRIPT_ROUTE16_SNORLAX_BATTLE
 	ld [wRoute16CurScript], a
 	ld [wCurMapScript], a
 	ret
 
-Route16SnorlaxPostBattleScript:
+Route16SnorlaxBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, Route16ResetScripts
+	jp z, Route16Script_59946
 	call UpdateSprites
 	ld a, [wBattleResult]
 	cp $2

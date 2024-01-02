@@ -1,5 +1,5 @@
 	object_const_def
-	const_export CERULEANBADGEHOUSE_MIDDLE_AGED_MAN
+	const CERULEANBADGEHOUSE_MIDDLE_AGED_MAN
 
 CeruleanBadgeHouse_Object:
 	db $c ; border block

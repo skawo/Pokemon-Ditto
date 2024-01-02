@@ -1,6 +1,6 @@
 	object_const_def
-	const_export SAFARIZONECENTERRESTHOUSE_GIRL
-	const_export SAFARIZONECENTERRESTHOUSE_SCIENTIST
+	const SAFARIZONECENTERRESTHOUSE_GIRL
+	const SAFARIZONECENTERRESTHOUSE_SCIENTIST
 
 SafariZoneCenterRestHouse_Object:
 	db $a ; border block

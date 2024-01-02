@@ -69,10 +69,10 @@ CreditsTextPointers:
 
 CredVersion:
 IF DEF(_RED)
-	db -8, "RED VERSION STAFF@"
+	db -8, "   DITTO VERSION@"
 ENDC
 IF DEF(_BLUE)
-	db -8, "BLUE VERSION STAFF@"
+	db -8, "   DITTO VERSION@"
 ENDC
 CredTajiri:
 	db -6, "SATOSHI TAJIRI@"

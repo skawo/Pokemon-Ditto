@@ -715,9 +715,9 @@ OaksLabCalcRivalMovementScript:
 OaksLabLoadTextPointers2Script:
 	ld hl, OaksLab_TextPointers2
 	ld a, l
-	ld [wCurMapTextPtr], a
+	ld [wMapTextPtr], a
 	ld a, h
-	ld [wCurMapTextPtr + 1], a
+	ld [wMapTextPtr + 1], a
 	ret
 
 OaksLab_TextPointers:
@@ -771,7 +771,7 @@ OaksLabRivalText:
 	call PrintText
 	jr .done
 .beforeChooseMon
-	CheckEventReuseA EVENT_GOT_STARTER
+	bit 2, a
 	jr nz, .afterChooseMon
 	ld hl, .GoAheadAndChooseText
 	call PrintText

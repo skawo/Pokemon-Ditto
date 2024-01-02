@@ -4,34 +4,34 @@ SeafoamIslands1F_Script:
 	ld hl, wFlags_0xcd60
 	bit 7, [hl]
 	res 7, [hl]
-	jr z, .noBoulderWasPushed
+	jr z, .asm_4483b
 	ld hl, Seafoam1HolesCoords
 	call CheckBoulderCoords
 	ret nc
 	EventFlagAddress hl, EVENT_SEAFOAM1_BOULDER1_DOWN_HOLE
 	ld a, [wCoordIndex]
 	cp $1
-	jr nz, .boulder2FellDownHole
+	jr nz, .asm_44819
 	SetEventReuseHL EVENT_SEAFOAM1_BOULDER1_DOWN_HOLE
 	ld a, HS_SEAFOAM_ISLANDS_1F_BOULDER_1
 	ld [wObjectToHide], a
 	ld a, HS_SEAFOAM_ISLANDS_B1F_BOULDER_1
 	ld [wObjectToShow], a
-	jr .hideAndShowBoulderObjects
-.boulder2FellDownHole
+	jr .asm_44825
+.asm_44819
 	SetEventAfterBranchReuseHL EVENT_SEAFOAM1_BOULDER2_DOWN_HOLE, EVENT_SEAFOAM1_BOULDER1_DOWN_HOLE
 	ld a, HS_SEAFOAM_ISLANDS_1F_BOULDER_2
 	ld [wObjectToHide], a
 	ld a, HS_SEAFOAM_ISLANDS_B1F_BOULDER_2
 	ld [wObjectToShow], a
-.hideAndShowBoulderObjects
+.asm_44825
 	ld a, [wObjectToHide]
 	ld [wMissableObjectIndex], a
 	predef HideObject
 	ld a, [wObjectToShow]
 	ld [wMissableObjectIndex], a
 	predef_jump ShowObject
-.noBoulderWasPushed
+.asm_4483b
 	ld a, SEAFOAM_ISLANDS_B1F
 	ld [wDungeonWarpDestinationMap], a
 	ld hl, Seafoam1HolesCoords

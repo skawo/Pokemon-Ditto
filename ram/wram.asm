@@ -576,10 +576,10 @@ wFilteredBagItemsCount:: db
 wSimulatedJoypadStatesIndex:: db
 
 ; written to but nothing ever reads it
-wUnusedCD39:: db
+wWastedByteCD39:: db
 
 ; written to but nothing ever reads it
-wUnusedCD3A:: db
+wWastedByteCD3A:: db
 
 ; mask indicating which real button presses can override simulated ones
 ; XXX is it ever not 0?
@@ -887,6 +887,10 @@ UNION
 wcd6d:: ds NAME_BUFFER_LENGTH ; buffer for various data
 
 NEXTU
+wEvosMoves:: ds MAX_EVOLUTIONS * EVOLUTION_SIZE + 1
+wEvosMovesEnd::
+
+NEXTU
 	ds 4
 ; temp variable used to print a move's current PP on the status screen
 wStatusScreenCurrentPP:: db
@@ -975,10 +979,7 @@ wBattleResult:: db
 ; bit 0: if set, DisplayTextID automatically draws a text box
 wAutoTextBoxDrawingControl:: db
 
-; used in some overworld scripts to vary scripted movement
-wSavedCoordIndex::
-wOakWalkedToPlayer::
-wNextSafariZoneGateScript:: db
+wcf0d:: db ; used with some overworld scripts (not exactly sure what it's used for)
 
 ; used in CheckForTilePairCollisions2 to store the tile the player is on
 wTilePlayerStandingOn:: db
@@ -1794,16 +1795,17 @@ wLastMap:: db
 
 wUnusedD366:: db
 
-wCurMapHeader::
 wCurMapTileset:: db
+
+; blocks
 wCurMapHeight:: db
 wCurMapWidth:: db
-wCurMapDataPtr:: dw
-wCurMapTextPtr:: dw
-wCurMapScriptPtr:: dw
-wCurMapConnections:: db
-wCurMapHeaderEnd::
 
+wMapDataPtr:: dw
+wMapTextPtr:: dw
+wMapScriptPtr:: dw
+
+wMapConnections:: db
 wNorthConnectionHeader:: map_connection_struct wNorth
 wSouthConnectionHeader:: map_connection_struct wSouth
 wWestConnectionHeader::  map_connection_struct wWest
@@ -1904,7 +1906,7 @@ wNumHoFTeams:: db
 
 wUnusedD5A3:: db
 
-wPlayerCoins:: dw ; BCD
+wPlayerCoins:: ds 2 ; BCD
 
 ; bit array of missable objects. set = removed
 wMissableObjectFlags:: flag_array $100
@@ -1912,8 +1914,8 @@ wMissableObjectFlagsEnd::
 
 	ds 7
 
-; saved copy of SPRITESTATEDATA1_IMAGEINDEX (used for sprite facing/anim)
-wSavedSpriteImageIndex:: db
+; temp copy of SPRITESTATEDATA1_IMAGEINDEX (used for sprite facing/anim)
+wd5cd:: db
 
 ; each entry consists of 2 bytes
 ; * the sprite ID (depending on the current map)

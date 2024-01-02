@@ -76,7 +76,7 @@ ViridianCityOldManStartCatchTrainingScript:
 	ld [wBattleType], a
 	ld a, 5
 	ld [wCurEnemyLVL], a
-	ld a, WEEDLE
+	ld a, QWILFISH
 	ld [wCurOpponent], a
 	ld a, SCRIPT_VIRIDIANCITY_OLD_MAN_END_CATCH_TRAINING
 	ld [wViridianCityCurScript], a

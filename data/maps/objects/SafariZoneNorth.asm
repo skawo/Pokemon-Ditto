@@ -1,6 +1,6 @@
 	object_const_def
-	const_export SAFARIZONENORTH_PROTEIN
-	const_export SAFARIZONENORTH_TM_SKULL_BASH
+	const SAFARIZONENORTH_PROTEIN
+	const SAFARIZONENORTH_TM_SKULL_BASH
 
 SafariZoneNorth_Object:
 	db $0 ; border block

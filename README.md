@@ -1,13 +1,3 @@
-
-# Pokemon Ditto Version
-A romhack in which you always have your opponents' team.
-
-Created for a challenge playthrough by ImportedCheese which can be seen here: https://www.youtube.com/watch?v=0CytxAYGjcU
-
-Forked from pret/PokeRed.
-Original README follows below.
-
-
 # Pokémon Red and Blue [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon Red and Blue.
@@ -27,13 +17,32 @@ To set up the repository, see [**INSTALL.md**](INSTALL.md).
 
 - [**Wiki**][wiki] (includes [tutorials][tutorials])
 - [**Symbols**][symbols]
+- **Discord:** [pret][discord]
+- **IRC:** [libera#pret][irc]
 
-You can find us on [Discord (pret, #pokered)](https://discord.gg/d5dubZ3).
+Other disassembly projects:
 
-For other pret projects, see [pret.github.io](https://pret.github.io/).
+- [**Pokémon Yellow**][pokeyellow]
+- [**Pokémon Gold/Silver**][pokegold]
+- [**Pokémon Crystal**][pokecrystal]
+- [**Pokémon Pinball**][pokepinball]
+- [**Pokémon TCG**][poketcg]
+- [**Pokémon Ruby**][pokeruby]
+- [**Pokémon FireRed**][pokefirered]
+- [**Pokémon Emerald**][pokeemerald]
 
+[pokeyellow]: https://github.com/pret/pokeyellow
+[pokegold]: https://github.com/pret/pokegold
+[pokecrystal]: https://github.com/pret/pokecrystal
+[pokepinball]: https://github.com/pret/pokepinball
+[poketcg]: https://github.com/pret/poketcg
+[pokeruby]: https://github.com/pret/pokeruby
+[pokefirered]: https://github.com/pret/pokefirered
+[pokeemerald]: https://github.com/pret/pokeemerald
 [wiki]: https://github.com/pret/pokered/wiki
 [tutorials]: https://github.com/pret/pokered/wiki/Tutorials
 [symbols]: https://github.com/pret/pokered/tree/symbols
+[discord]: https://discord.gg/d5dubZ3
+[irc]: https://web.libera.chat/?#pret
 [ci]: https://github.com/pret/pokered/actions
 [ci-badge]: https://github.com/pret/pokered/actions/workflows/main.yml/badge.svg

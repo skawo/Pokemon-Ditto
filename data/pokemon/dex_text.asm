@@ -297,6 +297,16 @@ _TangelaDexEntry::
 	next "weed. Its vines"
 	next "shake as it walks"
 	dex
+	
+_QwilfishDexEntry::
+	text "In far-away region"
+	next "of Paldea these"
+	next "convenient"
+
+	page "creatures are said"
+	next "to mind-control"
+	next "the residents"
+	dex
 
 _GrowlitheDexEntry::
 	text "Very protective"

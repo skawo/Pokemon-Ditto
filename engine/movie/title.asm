@@ -113,7 +113,7 @@ DisplayTitleScreen:
 	jr .next
 
 .tileScreenCopyrightTiles
-	db $41,$42,$43,$42,$44,$42,$45,$46,$47,$48,$49,$4A,$4B,$4C,$4D,$4E ; ©'95.'96.'98 GAME FREAK inc.
+	db $00,$00,$41,$42,$43,$44,$45,$46,$47,$48,$49,$4A,$4B,$4C,$4D,$4E ; ©'95.'96.'98 GAME FREAK inc.
 
 .next
 	call SaveScreenTilesToBuffer2
@@ -121,10 +121,10 @@ DisplayTitleScreen:
 	call EnableLCD
 
 IF DEF(_RED)
-	ld a, STARTER1 ; which Pokemon to show first on the title screen
+	ld a, DITTO ; which Pokemon to show first on the title screen
 ENDC
 IF DEF(_BLUE)
-	ld a, STARTER2 ; which Pokemon to show first on the title screen
+	ld a, DITTO ; which Pokemon to show first on the title screen
 ENDC
 	ld [wTitleMonSpecies], a
 	call LoadTitleMonSprite
@@ -280,9 +280,7 @@ TitleScreenPickNewMon:
 	ld a, [hl]
 	ld hl, wTitleMonSpecies
 
-; Can't be the same as before.
-	cp [hl]
-	jr z, .loop
+
 
 	ld [hl], a
 	call LoadTitleMonSprite
@@ -385,9 +383,9 @@ LoadCopyrightTiles:
 	jp PlaceString
 
 CopyrightTextString:
-	db   $60,$61,$62,$61,$63,$61,$64,$7F,$65,$66,$67,$68,$69,$6A             ; ©'95.'96.'98 Nintendo
-	next $60,$61,$62,$61,$63,$61,$64,$7F,$6B,$6C,$6D,$6E,$6F,$70,$71,$72     ; ©'95.'96.'98 Creatures inc.
-	next $60,$61,$62,$61,$63,$61,$64,$7F,$73,$74,$75,$76,$77,$78,$79,$7A,$7B ; ©'95.'96.'98 GAME FREAK inc.
+	db   $7F,$7F,$60,$61,$62,$63,$64,$7F,$65,$66,$67,$68,$69,$6A             ; ©'95.'96.'98 Nintendo
+	next $7F,$7F,$60,$61,$62,$63,$64,$7F,$6B,$6C,$6D,$6E,$6F,$70,$71,$72    ; ©'95.'96.'98 Creatures inc.
+	next $7F,$7F,$60,$61,$62,$63,$64,$7F,$73,$74,$75,$76,$77,$78,$79,$7A,$7B ; ©'95.'96.'98 GAME FREAK inc.
 	db   "@"
 
 INCLUDE "data/pokemon/title_mons.asm"
@@ -401,7 +399,7 @@ PrintGameVersionOnTitleScreen:
 ; these point to special tiles specifically loaded for that purpose and are not usual text
 VersionOnTitleScreenText:
 IF DEF(_RED)
-	db $60,$61,$7F,$65,$66,$67,$68,$69,"@" ; "Red Version"
+	db $60,$61,$62,$63,$64,$65,$66,$67,"@" ; "Blue Version"
 ENDC
 IF DEF(_BLUE)
 	db $61,$62,$63,$64,$65,$66,$67,$68,"@" ; "Blue Version"

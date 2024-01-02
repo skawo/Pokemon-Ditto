@@ -1,5 +1,5 @@
 	object_const_def
-	const_export HALLOFFAME_OAK
+	const HALLOFFAME_OAK
 
 HallOfFame_Object:
 	db $3 ; border block

@@ -14,9 +14,9 @@ GameCornerSelectLuckySlotMachine:
 	call Random
 	ldh a, [hRandomAdd]
 	cp $7
-	jr nc, .not_max
+	jr nc, .asm_48be2
 	ld a, $8
-.not_max
+.asm_48be2
 	srl a
 	srl a
 	srl a
@@ -63,18 +63,18 @@ GameCornerRocketBattleScript:
 	ld a, GAMECORNER_ROCKET
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
-	ld de, GameCornerMovement_Rocket_WalkAroundPlayer
+	ld de, GameCornerMovement_Grunt_WalkAroundPlayer
 	ld a, [wYCoord]
 	cp 6
-	jr nz, .not_direct_movement
-	ld de, GameCornerMovement_Rocket_WalkDirect
-	jr .got_rocket_movement
-.not_direct_movement
+	jr nz, .asm_48c43
+	ld de, GameCornerMovement_Grunt_WalkDirect
+	jr .asm_48c4d
+.asm_48c43
 	ld a, [wXCoord]
 	cp 8
-	jr nz, .got_rocket_movement
-	ld de, GameCornerMovement_Rocket_WalkDirect
-.got_rocket_movement
+	jr nz, .asm_48c4d
+	ld de, GameCornerMovement_Grunt_WalkDirect
+.asm_48c4d
 	ld a, GAMECORNER_ROCKET
 	ldh [hSpriteIndex], a
 	call MoveSprite
@@ -82,7 +82,7 @@ GameCornerRocketBattleScript:
 	ld [wGameCornerCurScript], a
 	ret
 
-GameCornerMovement_Rocket_WalkAroundPlayer:
+GameCornerMovement_Grunt_WalkAroundPlayer:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_RIGHT
@@ -93,7 +93,7 @@ GameCornerMovement_Rocket_WalkAroundPlayer:
 	db NPC_MOVEMENT_RIGHT
 	db -1 ; end
 
-GameCornerMovement_Rocket_WalkDirect:
+GameCornerMovement_Grunt_WalkDirect:
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_RIGHT

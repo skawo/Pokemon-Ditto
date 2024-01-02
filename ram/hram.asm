@@ -85,10 +85,10 @@ hSpriteScreenX:: db
 hSpriteScreenY:: db
 
 NEXTU
-hCollidingSpriteOffset:: db
-hCollidingSpriteTempYValue:: db
-hCollidingSpriteTempXValue:: db
-hCollidingSpriteAdjustedDistance:: db
+hFF8F:: db
+hFF90:: db
+hFF91:: db
+hFF92:: db
 ENDU
 
 hTilePlayerStandingOn:: db
@@ -173,7 +173,7 @@ hMoney:: ds 3 ; BCD number
 NEXTU
 ; some code zeroes this for no reason when writing a coin amount
 hUnusedCoinsByte:: db
-hCoins:: dw ; BCD number
+hCoins:: ds 2 ; BCD number
 ENDU
 
 hDivideBCDDivisor::
@@ -327,8 +327,11 @@ hItemCounter::
 hSavedCoordIndex::
 hMissableObjectIndex::
 hGymTrashCanRandNumMask::
-hInteractedWithBookshelf::
 	db
+
+NEXTU
+hFFDB:: db
+hFFDC:: db
 ENDU
 
 	ds 1

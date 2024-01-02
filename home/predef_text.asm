@@ -7,7 +7,7 @@ PrintPredefTextID::
 	call DisplayTextID
 
 RestoreMapTextPointer::
-	ld hl, wCurMapTextPtr
+	ld hl, wMapTextPtr
 	ldh a, [hSavedMapTextPtr]
 	ld [hli], a
 	ldh a, [hSavedMapTextPtr + 1]
@@ -15,14 +15,14 @@ RestoreMapTextPointer::
 	ret
 
 SetMapTextPointer::
-	ld a, [wCurMapTextPtr]
+	ld a, [wMapTextPtr]
 	ldh [hSavedMapTextPtr], a
-	ld a, [wCurMapTextPtr + 1]
+	ld a, [wMapTextPtr + 1]
 	ldh [hSavedMapTextPtr + 1], a
 	ld a, l
-	ld [wCurMapTextPtr], a
+	ld [wMapTextPtr], a
 	ld a, h
-	ld [wCurMapTextPtr + 1], a
+	ld [wMapTextPtr + 1], a
 	ret
 
 INCLUDE "data/text_predef_pointers.asm"

@@ -7,7 +7,7 @@ FightingDojo_Script:
 	ld [wFightingDojoCurScript], a
 	ret
 
-FightingDojoResetScripts:
+FightingDojoScript_5cd70:
 	xor a ; SCRIPT_FIGHTINGDOJO_DEFAULT
 	ld [wJoyIgnore], a
 	ld [wFightingDojoCurScript], a
@@ -32,15 +32,15 @@ FightingDojoDefaultScript:
 	ret nz
 	xor a
 	ldh [hJoyHeld], a
-	ld [wSavedCoordIndex], a
+	ld [wcf0d], a
 	ld a, [wYCoord]
 	cp 3
 	ret nz
 	ld a, [wXCoord]
 	cp 4
 	ret nz
-	ld a, 1
-	ld [wSavedCoordIndex], a
+	ld a, $1
+	ld [wcf0d], a
 	ld a, PLAYER_DIR_RIGHT
 	ld [wPlayerMovingDirection], a
 	ld a, FIGHTINGDOJO_KARATE_MASTER
@@ -56,10 +56,10 @@ FightingDojoDefaultScript:
 FightingDojoKarateMasterPostBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, FightingDojoResetScripts
-	ld a, [wSavedCoordIndex]
-	and a ; nz if the player was at (4, 3), left of the Karate Master
-	jr z, .already_facing
+	jp z, FightingDojoScript_5cd70
+	ld a, [wcf0d]
+	and a
+	jr z, .asm_5cde4
 	ld a, PLAYER_DIR_RIGHT
 	ld [wPlayerMovingDirection], a
 	ld a, FIGHTINGDOJO_KARATE_MASTER
@@ -67,7 +67,8 @@ FightingDojoKarateMasterPostBattleScript:
 	ld a, SPRITE_FACING_LEFT
 	ldh [hSpriteFacingDirection], a
 	call SetSpriteFacingDirectionAndDelay
-.already_facing
+
+.asm_5cde4
 	ld a, D_RIGHT | D_LEFT | D_UP | D_DOWN
 	ld [wJoyIgnore], a
 	SetEventRange EVENT_BEAT_KARATE_MASTER, EVENT_BEAT_FIGHTING_DOJO_TRAINER_3

@@ -1,5 +1,5 @@
 	object_const_def
-	const_export MRPSYCHICSHOUSE_MR_PSYCHIC
+	const MRPSYCHICSHOUSE_MR_PSYCHIC
 
 MrPsychicsHouse_Object:
 	db $a ; border block

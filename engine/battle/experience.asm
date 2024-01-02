@@ -1,4 +1,11 @@
 GainExperience:
+	ld a, [wIsInBattle]
+	dec a
+	jr nz, .trainerBattle
+	ret
+	
+.trainerBattle:
+	
 	ld a, [wLinkState]
 	cp LINK_STATE_BATTLING
 	ret z ; return if link battle

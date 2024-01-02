@@ -1,7 +1,7 @@
 	object_const_def
-	const_export PALLETTOWN_OAK
-	const_export PALLETTOWN_GIRL
-	const_export PALLETTOWN_FISHER
+	const PALLETTOWN_OAK
+	const PALLETTOWN_GIRL
+	const PALLETTOWN_FISHER
 
 PalletTown_Object:
 	db $b ; border block
