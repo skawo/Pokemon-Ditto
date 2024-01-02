@@ -1,3 +1,13 @@
+
+# Pokemon Ditto Version
+A romhack in which you always have your opponents' team.
+
+Created for a challenge playthrough by ImportedCheese which can be seen here: https://www.youtube.com/watch?v=0CytxAYGjcU
+
+Forked from pret/PokeRed.
+Original README follows below.
+
+
 # Pokémon Red and Blue [![Build Status][ci-badge]][ci]
 
 This is a disassembly of Pokémon Red and Blue.
