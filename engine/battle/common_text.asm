@@ -93,7 +93,7 @@ CopyOpponentParty:
 ; Copy Pokemon names	
 	ld a, 6
 	ld [wUnusedD366], a
-	ld bc, wPartySpecies
+	ld bc, wPartyMon1Species
 	ld de, wPartyMon1Nick	
 
 .loopFixNames
@@ -114,7 +114,6 @@ CopyOpponentParty:
 	call CopyData
 	
 	pop de
-	pop bc
 	
 	ld hl, 0
 	add hl, de
@@ -123,9 +122,11 @@ CopyOpponentParty:
 	ld d, h
 	ld e, l
 	
+	pop bc
+	
 	ld hl, 0
 	add hl, bc	
-	ld bc, wPartyMon2Species - wPartySpecies
+	ld bc, wPartyMon2Species - wPartyMon1Species
 	add hl, bc
 	ld b, h
 	ld c, l	
